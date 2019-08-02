@@ -2,6 +2,10 @@
   Action Types Go Here!
   Be sure to export each action type so you can pull it into your reducer
 */
+export const ADD_SMURF = 'ADD_SMURF';
+export const GET_SMURF = 'GET_SMURF';
+export const UPDATE_SMURF ='UPDATE_SMURF';
+export const DELETE_SMURF = 'DELETE_SMURF';
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
