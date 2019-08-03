@@ -3,7 +3,12 @@
 */
 import {
   GET_SMURF,
-  FETCH_SMURF
+  FETCH_SMURF,
+  ADD_SMURF,
+  ADD_SMURF_SUCCESS,
+  ADD_SMURF_FAILED,
+  SUCCESS,
+  FAIL
 } from '../actions';
 
 /*
@@ -20,6 +25,7 @@ import {
 const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
+  addingSmurfs: false,
   error: null
 };
 
@@ -46,6 +52,36 @@ function smurfsReducer(state = initialState, action) {
           fetchingSmurfs: false,
           smurfs: action.payload
         };
+        case ADD_SMURF: 
+        return {
+          ...state,
+          fetchingSmurfs: false,
+          error: null
+        };
+        case ADD_SMURF_SUCCESS:
+          return {
+            ...state, 
+            smurfs: action.payload
+          };
+          case ADD_SMURF_FAILED:
+            return {
+              ...state,
+              fetchingSmurfs: false,
+              error: action.payload
+            };
+            case SUCCESS:
+              return {
+                ...state,
+                fetchingSmurfs: false,
+                error: null,
+                smurfs: [...state.smurfs, ...action.payload]
+              };
+              case FAIL:
+                return {
+                  ...state,
+                  fetchingSmurfs: false,
+                  error: action.payload
+                };
           default:
             return state;
   }

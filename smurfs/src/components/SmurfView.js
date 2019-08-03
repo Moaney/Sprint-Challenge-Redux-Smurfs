@@ -8,13 +8,17 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions';
+import { addSmurf } from '../actions';
 
 class SmurfView extends Component {
 
 
 componentDidMount() {
   this.props.getSmurfs();
+  this.props.addSmurf();
 }
+
+
 
   render() {
     return (
@@ -38,5 +42,5 @@ export const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {getSmurfs}
+  {getSmurfs, addSmurf}
 )(SmurfView);
