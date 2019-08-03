@@ -2,7 +2,6 @@
   Be sure to import in all of the action types from `../actions`
 */
 import {
-  ADD_SMURF,
   GET_SMURF,
   FETCH_SMURF
 } from '../actions';
@@ -21,7 +20,6 @@ import {
 const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
-  addingSmurfs: false,
   error: null
 };
 
@@ -39,24 +37,17 @@ function smurfsReducer(state = initialState, action) {
       return {
         ...state,
         error: null,
-        fetchingSmurfs: true
+        fetchingSmurfs: true,
       };
       case GET_SMURF:
         return {
           ...state,
           error: null,
-          addingSmurfs: false,
-          fetchingSmurfs: action.payload
+          fetchingSmurfs: false,
+          smurfs: action.payload
         };
-        case ADD_SMURF:
-          return {
-            ...state,
-            fetchingSmurfs: false,
-            addingSmurfs: true,
-            smurfs: action.payload
-          };
           default:
-            //do nothing
+            return state;
   }
 }
 export default smurfsReducer;
