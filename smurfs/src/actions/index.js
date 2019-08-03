@@ -3,6 +3,7 @@ import axios from 'axios';
   Action Types Go Here!
   Be sure to export each action type so you can pull it into your reducer
 */
+export const FETCH_SMURF = 'FETCH_SMURF';
 export const ADD_SMURF = 'ADD_SMURF';
 export const GET_SMURF = 'GET_SMURF';
 // export const UPDATE_SMURF ='UPDATE_SMURF';
@@ -19,7 +20,7 @@ export const GET_SMURF = 'GET_SMURF';
    D - deleteSmurf
 */
 export const getSmurfs = () => dispatch => {
-  dispatch({ type: ADD_SMURF });
+  dispatch({ type: FETCH_SMURF });
   axios
   .get('http://localhost:3333/smurfs')
   .then(({ data }) => {
@@ -28,12 +29,19 @@ export const getSmurfs = () => dispatch => {
       type: GET_SMURF,
       payload: data.results
     });
-  });
+  })
+  .catch(err => console.log(err));
 };
 
 export const postSmurf = () => dispatch => {
-  dispatch ({ type: ADD_SMURF });
+  dispatch ({ type: FETCH_SMURF });
   axios
   .post('http://localhost:3333/smurfs')
-  .then(({ data }) => {  data.results });
+  .then(({ data }) => {  
+    dispatch({
+      type: ADD_SMURF,
+      payload: data.results
+    });
+   })
+   .catch(err => console.log(err));
 };
